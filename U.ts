@@ -24,6 +24,7 @@ namespace Furnece {
     cooked = false
 
     //%block="Create Furnace UI"
+    //%group="Create"
     export function furnece(): void {
         scene.setBackgroundColor(11)
         mySprite = sprites.create(img`
@@ -147,6 +148,7 @@ namespace Furnece {
     //%block="set Furnece fuel amount to $num and raw item amount to $num2 and raw item image to $image and fuel image to $image2"
     //%image.shadow=screen_image_picker
     //%image2.shadow=screen_image_picker
+     //%group="Cook"
     export function furnec(num: number,num2: number,image:Image,image2:Image): void {
         Number2 = num
         Number3 = num2
@@ -167,6 +169,7 @@ namespace Furnece {
     }
     //%block="set Furnace to smelt $image"
     //%image.shadow=screen_image_picker
+     //%group="Smelt"
     export function furne(image: Image,): void {
         while (Number2 > 0 && Number3 > 0) {
             animation.runImageAnimation(
@@ -351,14 +354,17 @@ namespace Furnece {
         }
 }
     //%block="cooked item"
+     //%group="Cook"
     export function furn(): Sprite {
 return smelt
     }
     //%block="set Fuel amount to $num"
+     //%group="Smelt"
     export function fur(num: number): void {
         Number2 = num
     }
     //%block="Exit Furnace"
+     //%group="Exit"
     export function fu(): void {     
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)   
         st3 = false
@@ -367,6 +373,7 @@ return smelt
         
     }
     //%block="cooked item image"
+     //%group="Cook"
     export function furn2(): Image {
         return smelt.image
     }
