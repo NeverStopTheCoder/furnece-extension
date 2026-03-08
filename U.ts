@@ -22,7 +22,10 @@ namespace Furnece {
     st2 = true
     st3 = true
     cooked = false
-
+    let color1 = 2
+    let color2 = 2
+    let showtext = true
+    let showtext2 = true
     //%block="Create Furnace UI"
     //%group="Create"
     export function furnece(): void {
@@ -120,8 +123,8 @@ namespace Furnece {
         fire.x = 40
         fire.y = 50
         scene.createRenderable(10, function (target, camera) {
-            if (st3 == true) {
-            target.print("Furnace", 55, 10, 2)
+            if (st3 == true && showtext == true) {
+            target.print("Furnace", 55, 10, color1)
             }
         })
         smelt = sprites.create(img`
@@ -157,13 +160,13 @@ namespace Furnece {
         cookeditem = sprites.create(image2, SpriteKind.Player)
         cookeditem.setPosition(sqaure.x, sqaure.y)
         scene.createRenderable(10, function (target, camera) {
-            if (st == true) {
-                target.print(convertToText(Number3), cookeditem2.x, cookeditem2.y, 2)
+            if (st == true && showtext2 == true) {
+                target.print(convertToText(Number3), cookeditem2.x, cookeditem2.y, color2)
             }
         })
         scene.createRenderable(10, function (target, camera) {
-            if (st2 == true) {
-                target.print(convertToText(Number2), cookeditem.x, cookeditem.y, 2)
+            if (st2 == true && showtext2 == true) {
+                target.print(convertToText(Number2), cookeditem.x, cookeditem.y, color2)
             }
         })
     }
@@ -303,7 +306,9 @@ namespace Furnece {
             Number4 += 1
             smelt.setImage(image)
             scene.createRenderable(10, function (target, camera) {
-                target.print(convertToText(Number4), smelt.x, smelt.y, 2)
+                if (showtext2 == true) {
+                target.print(convertToText(Number4), smelt.x, smelt.y, color2)
+                }
             })
             if (Number2 == 0 || Number3 == 0) {
                 animation.stopAnimation(animation.AnimationTypes.All, fire)
@@ -376,6 +381,28 @@ return smelt
      //%group="Cook"
     export function furn2(): Image {
         return smelt.image
+    }
+    //%block="set Furnace text color to $color"
+    //% color.shadow="colorindexpicker"
+    //%group="Color"
+    export function furntcc(color: number): void {
+        color1 = 0
+    }
+    //%block="set Food text color to $color"
+    //% color.shadow="colorindexpicker"
+    //%group="Color"
+    export function furntcc2(color: number): void {
+        color2 = 0
+    }
+    //%block="Show Furnace text to $b"
+    //%group="Show"
+    export function furnts(b: boolean): void {
+        showtext = b
+    }
+    //%block="Show Food text to $b"
+    //%group="Show"
+    export function furnts2(b: boolean): void {
+        showtext2 = b
     }
     }
 
